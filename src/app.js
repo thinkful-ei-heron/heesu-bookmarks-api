@@ -46,4 +46,8 @@ app.use(function errorHandler(error, req, res, next) {
   res.status(500).json(response)
 });
 
+app.get('./bookmarks', (req, res, next) => {
+  res.send('Hello, World!')
+});
+
 module.exports = app;

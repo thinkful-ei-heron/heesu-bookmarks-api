@@ -2,23 +2,30 @@ const bookmarks = [
   {
   id : 1,
   title : 'hello',
-  ur : 'www.google.com',
+  url : 'http://www.google.com',
   description : 'google',
   rating : 3
   },
   {
-    id : 3,
+    id : 2,
     title : 'bye',
-    url : 'www.facebook.com',
+    url : 'https://www.facebook.com/',
     description : 'bye',
     rating : 7
   },
   {
-    id : 5,
+    id : 3,
     title : 'good',
-    url : 'www.instagram.com',
-    description : 'insta',
+    url : 'https://www.youtube.com/',
+    description : 'youtube',
     rating : 2 
+  },
+  {
+    id : 4,
+    title : 'github',
+    url : 'https://github.com/thinkful-ei-heron',
+    description : 'github',
+    rating : 6 
   }
 ];
 
