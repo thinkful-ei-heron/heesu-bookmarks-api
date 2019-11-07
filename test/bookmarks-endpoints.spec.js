@@ -48,15 +48,18 @@ describe.only('Bookmarks Endpoints', () => {
     })
   });
 
-  // describe(`GET /bookmarks/:id`, () => {
-  //   context(`Given no bookmarks`, () => {
-  //     it(`responds with 404`, () => {
-  //       const bookmarksId = 123456
-  //       return supertest(app)
-  //         .get(`/bookmarks/${bookmarksId}`)
-  //         .expect(404, { error: { message: `Bookmarks doesn't exist` } })
-  //     })
-  //   });
+  describe(`GET /bookmarks/:id`, () => {
+    context(`Given no bookmarks`, () => {
+      it(`responds with 404`, () => {
+        const bookmarksId = 123456
+        return supertest(app)
+          .get(`/bookmarks/${bookmarksId}`)
+          .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+          .expect(404, { 
+            error: { message: `Bookmarks doesn't found` } 
+          })
+      })
+    });
 
   //   context('Given there are bookmakrs in the database', () => {
   //     const testBookmarks = makeBookmarksArray()
@@ -75,7 +78,7 @@ describe.only('Bookmarks Endpoints', () => {
   //         .expect(200, expectedBookmarks)
   //     })
   //   })
-  // });
+  });
 
   
 

@@ -17,7 +17,7 @@ const bookmarkForm = bookmark => ({
 
 bookmarksRouter
   .route('/bookmarks')
-  .get((req, res) => {
+  .get((req, res, next) => {
     BookmarksService.getAllBookmarks(req.app.get('db'))
       .then(bookmarks => {
         res.json(bookmarks.map(bookmarkForm));
@@ -66,21 +66,23 @@ bookmarksRouter
   //     .json(bookmark);
 //});
 
-// bookmarksRouter
-//   .route('/bookmarks/:bookmark_id')
-//   .get((req, res) => {
-//     const {bookmark_id} = req.params;
-//     const bookmark = bookmarks.find(c => c.id == bookmark_id);
-
-//     // make sure we found a card
-//     if (!bookmark) {
-//       logger.error(`Card with id ${bookmark_id} not found.`);
-//       return res
-//         .status(404)
-//         .send('Card Not Found');
-//     }
-//     res.json(bookmark);
-//   })
+bookmarksRouter
+  .route('/bookmarks/:bookmark_id')
+  .get((req, res, next) => {
+    const {bookmark_id} = req.params;
+    //const bookmark = bookmarks.find(c => c.id == bookmark_id);
+    BookmarksService.getById(req.app.get('db'), bookmark_id)
+    .then(bookmark => {
+      if (!bookmark) {
+        logger.error(`Bookmark with id ${bookmark_id} not found.`)
+        return res.status(404).json({
+          error: { message: `Bookmarks doesn't found` }
+        })
+      }
+      res.json(bookmarkForm(bookmark))
+    })
+    .catch(next)
+  });
 //   .delete((req, res) => {
 //     // move implementation logic into here
 //     const {bookmark_id} = req.params;

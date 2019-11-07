@@ -2,3 +2,5 @@
 {"message":"Card with id 123456 not found.","level":"error"}
 {"message":"Unauthorized request to path: /bookmarks/123456","level":"error"}
 {"message":"Unauthorized request to path: /bookmarks/2","level":"error"}
+{"message":"Bookmark with id 123456 not found.","level":"error"}
+{"message":"Bookmark with id 123456 not found.","level":"error"}
