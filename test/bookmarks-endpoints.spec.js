@@ -138,8 +138,25 @@ describe('Bookmarks Endpoints', () => {
           })
       })
     })
-  });
 
+    context('Given there are bookmarks in the database', () => {
+      const testBookmarks= makeBookmarksArray();
+
+      beforeEach('insert bookmarks', () => {
+        return db
+          .into('bookmarks')
+          .insert(testBookmarks)
+      })
+
+      it('gets bookmarks from store', () => {
+        return supertest(app)
+          .get('/bookmarks')
+          .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+          .expect(200, testBookmarks)
+      })
+    })
+
+  });
 });
 
 
